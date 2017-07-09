@@ -7,9 +7,13 @@ $ npm install
 ```
 
 to run app on localhost:3000
+```
+$ npm start
+```
 
-### `npm start`
 
 To create a build version
+```
+$ npm run build
+```
 
-### `npm run build`
