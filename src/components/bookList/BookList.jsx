@@ -24,7 +24,7 @@ export default class BookList extends Component {
     }
 
     componentDidMount(){
-        this.loadBooks( this.props.categoryId )
+        this.loadBooks( this.props.categoryId, this.state.activePage )
     }
 
     componentWillReceiveProps(newProps){
@@ -33,45 +33,49 @@ export default class BookList extends Component {
                 books : [],
                 activePage: 1
             });
-            this.loadBooks(newProps.categoryId)
+            this.loadBooks(newProps.categoryId, 1)
         }
     }
 
     handleChangePage(eventKey) {
+
+        console.log(eventKey)
+
         this.setState({
-            books : [],
-            activePage: eventKey
+            books : []
         });
 
-        this.loadBooks(this.props.categoryId)
+        this.loadBooks(this.props.categoryId, eventKey)
     }
 
-    loadBooks(catId){
+    loadBooks(catId, page = 1){
         this.setState({
             loading : true
         })
 
         //If a category is specified, load the book for the category. Otherwise all books are loaded
         if(catId){
-            Api.getBooksByCategory( catId, this.state.activePage ).then((res) =>{
+            Api.getBooksByCategory( catId, page ).then((res) =>{
                 if(!res){
                     res = []
                 }
                 this.setState({
                     books : res.books,
                     totalPages : res.total_pages,
+                    activePage: page,
                     loading : false
                 })
             })
 
         }else {
-            Api.getAllBooks( this.state.activePage ).then((res) =>{
+            Api.getAllBooks( page ).then((res) =>{
                 if(!res){
                     res = []
                 }
                 this.setState({
                     books : res.books,
                     totalPages : res.total_pages,
+                    activePage: page,
                     loading : false
                 })
             })

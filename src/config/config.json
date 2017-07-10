@@ -1,4 +1,4 @@
 {
-  "API_SERVER" : "http://52.41.65.211:8028/api/v1",   // URL of the API server
-  "MAX_CATEGORIES" : 200                              // MAX number of categories
+  "API_SERVER" : "http://52.41.65.211:8028/api/v1",
+  "MAX_CATEGORIES" : 200                              
 }
